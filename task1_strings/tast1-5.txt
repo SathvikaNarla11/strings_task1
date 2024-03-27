@@ -1,0 +1,27 @@
+5. C++ Program for Remove all duplicates from the input string.
+
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    char str[80];
+    cin.getline(str,80);
+    
+    int arr[256] = {0};
+    for(int i=0;str[i]!='\0';i++)
+    {
+        arr[str[i]]++;
+    }
+    for(int i=0;str[i]!='\0';i++)
+    {
+        if(arr[str[i]]>=1)
+        {
+            cout<<str[i]<<" ";
+            arr[str[i]]=0;
+        }
+    }
+    
+return 0;
+}

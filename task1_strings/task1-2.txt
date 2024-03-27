@@ -1,0 +1,30 @@
+*****************************************
+
+2. C++ program to swap two Strings
+
+*****************************************
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    string s1,s2;
+    cout<<"Enter string 1 : ";
+    getline(cin,s1);
+    cout<<"Enter string 2 : ";
+    getline(cin,s2);
+    string temp;
+    cout<<endl;
+    
+    temp=s1;
+    s1=s2;
+    s2=temp;
+    cout<<"Before swap "<<endl;
+    cout<<"String1 : "<<s1<<endl;
+    cout<<"String2 : "<<s2<<endl;
+    cout<<endl;
+    s1.swap(s2);
+    cout<<"After swap"<<endl;
+    cout<<"String1 : "<<s1<<endl;
+    cout<<"String2 : "<<s2<<endl;
+}

@@ -1,0 +1,134 @@
+1. C++ program  to Create Custom function for strlen, strcpy, strchr, strstr  eg: create functions mystrlen, mystrcpy which behaves in same manner as these library functions
+
+strlen():
+
+#include <iostream>
+using namespace std;
+int mystrlength(char *s)
+{
+    int count =0;
+    for(int i=0;s[i]!= '\0';i++)
+    {
+        count++;
+    }
+    return count;
+}
+int main()
+{
+    char str[80];
+    cout<<"Enter the string : ";
+    cin.getline(str,80);
+    cout<<"The length of the string is : "<<mystrlength(str);
+}
+
+_____________________________________
+
+strcpy():
+
+#include <iostream>
+using namespace std;
+char* mystrCopy(char *des,const char* src)
+{
+    int i;
+    for(int i=0;src[i]!= '\0';i++)
+    {
+        des[i] = src[i];
+    }
+    return des;
+}
+int main()
+{
+    char src[80];
+    char des[80];
+    cout<<"Enter the string to be copied : ";
+    cin.getline(src,80);
+    cout<<"Copied string is : ";
+    cout<<mystrCopy(des,src);
+}
+
+_____________________________________
+
+strchr():
+
+#include <iostream>
+using namespace std;
+char* mystrChar(char* strt,char cc)
+{
+    int count=0;
+    int i;
+    char des[80];
+    for(i=0;strt[i]!='\0';i++)
+    {
+        if(strt[i] == cc)
+        	return &strt[i+1];
+        //return (char*) (strt+i+1);
+    }
+    return 0;
+}
+int main()
+{
+    char str[80];
+    cout<<"Enter string :"<<endl;
+    cin.getline(str,80);
+    char ch;
+    cout<<"Enter character :"<<endl;
+    cin>>ch;
+    
+    char* result = mystrChar(str,ch);
+    if(result == 0)
+    {
+        cout<<"Character not found!"<<endl;
+    }
+    else
+    {
+        cout<<"The result is : "<<result;
+    }
+}
+_____________________________________
+
+strstr():
+
+#include <iostream>
+#include<cstring>
+using namespace std;
+char* mystrstr(char* strt,char* cc)
+{
+    int count=0;
+    int i;
+    
+    int len2 = strlen(cc);
+    if(!len2)
+    {
+        return 0;
+    }
+    for(i=0;strt[i] != '\0';i++)
+    {
+        if(strt[i] == cc[0])
+        {
+            int j=0;
+            for( ;j<=len2;j++)
+            {
+                if(strt[i+j] != cc[j])
+                break;
+            }
+            if(j==len2)
+                return (strt+i+len2+1);
+        }
+    }
+    return 0;
+}
+int main()
+{
+    int size;
+    cout<<"Enter size of array : ";
+    cin>>size;
+    cin.ignore();
+    char str[size];
+    cout<<"Enter string :"<<endl;
+    cin.getline(str,size);
+    char s2[80];
+    cout<<"Enter string to find :"<<endl;
+    cin>>s2;
+    
+    cout<<mystrstr(str,s2);
+}

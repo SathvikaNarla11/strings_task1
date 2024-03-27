@@ -1,0 +1,30 @@
+
+6. C++ Program for Remove characters from the first string which are present in the second string
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    string s1,s2;
+    getline(cin,s1);
+    getline(cin,s2);
+    int i;
+    for(i=0;s1[i] !='\0';i++)
+    {
+        bool found = true;
+        for(int j=0;s2[j]!='\0';j++)
+        {
+            if(s1[i]==s2[j])
+            {
+                found= false;
+                break;
+            }
+            
+        }
+        if(found)
+        {
+            cout<<s1[i];
+        }
+    }
+}

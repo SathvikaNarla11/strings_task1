@@ -1,0 +1,101 @@
+11. C++ Program for
+Implement copy constructor(use deep copy), assignment operator and parameterized constructor for below class
+Class Test{
+Public:
+                Int modelNumber;
+                Char *modelName;
+                Static int chasisNumber;
+                Const int engineNumber;
+};
+
+
+
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+class Test
+{
+public:
+    int modelNumber;
+    char *modelName;
+    static int chasisNumber;
+    const int engineNumber=0;
+    
+    Test()
+    {
+        cout<<"Constructor"<<endl;
+    }
+    //parameterized constructor
+    Test(int mN,int cN,const char *mname,int en):engineNumber(en)
+    {
+        cout<<"Parameterized Constructor"<<endl;
+        modelNumber = mN;
+        chasisNumber = cN;
+        modelName = new char[strlen(mname)+1];
+        strcpy(modelName,mname);
+    }
+    //copy contructor
+    Test(const Test &ts):engineNumber(ts.engineNumber)
+    {
+        cout<<"Copy Constructor"<<endl;
+        modelNumber = ts.modelNumber;
+        chasisNumber = ts.chasisNumber;
+        modelName = new char[strlen(ts.modelName)+1];
+        strcpy(modelName,ts.modelName);
+    }
+    //assignment operator
+    Test& operator= (const Test &ts)
+    {
+        cout<<"Assignment operator"<<endl;
+        modelNumber = ts.modelNumber;
+        chasisNumber = ts.chasisNumber;
+        // delete[] modelName;
+        modelName = new char[strlen(ts.modelName)+1];
+        strcpy(modelName,ts.modelName);
+ 
+        return *this;
+    }
+    
+    
+    void display()
+    {
+        cout<<modelNumber<<endl;
+        cout<<chasisNumber<<endl;
+        cout<<modelName<<endl;
+        cout<<engineNumber<<endl;
+    }
+    ~Test()
+    {
+        cout<<"Destructor\n";    
+    }
+};
+int Test:: chasisNumber=0;
+int main()
+{
+    Test t4;
+    cout<<endl;
+    
+    Test t1(1,1001,"abc",543);
+    t1.display();
+    cout<<endl;
+    
+    Test t2(t1);
+    t2.display();
+    cout<<endl;
+    
+    Test t3(2,2002,"bcd",345);
+    t1=t3;
+    // cout<<"t1=t3, t1.display()\n";
+    t1.display();
+    cout<<endl;
+    // cout<<"\n";
+    // t2.display();
+    // cout<<endl;
+    // t3.display();
+    
+    return 0;
+}
+
+
+
